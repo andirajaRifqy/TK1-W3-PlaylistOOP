@@ -32,19 +32,7 @@ src/
 - `Admin` dan `Member` mewarisi `User`.
 - `tampilkanAkses()` di-override untuk menunjukkan runtime polymorphism.
 
-## Menjalankan di GitHub Codespaces
-
-Buka repository melalui **Code > Codespaces > Create codespace on main**.
-
-Di Terminal jalankan:
-
-```bash
-mkdir -p out
-javac -d out src/playlistoop/*.java
-java -cp out playlistoop.PlaylistOOP
-```
-
-## Skenario Pengujian Laporan
+## Pengujian Laporan
 
 Pengujian laporan menggunakan satu lagu:
 - Judul: `Laskar Pelangi`
@@ -63,14 +51,6 @@ Urutan pengujian manual:
 9. Hitung rata-rata durasi.
 10. Kembali ke menu utama dan keluar.
 
-### Pengujian otomatis dengan input yang sama
-
-File `test-input.txt` sudah berisi urutan input di atas. Jalankan:
-
-```bash
-java -cp out playlistoop.PlaylistOOP < test-input.txt
-```
-
 Hasil yang diharapkan mencakup:
 - Lagu berhasil ditambahkan: `Laskar Pelangi`.
 - Lagu muncul pada daftar playlist.
@@ -82,4 +62,4 @@ Hasil yang diharapkan mencakup:
 
 ## Bukti Eksekusi
 
-Tambahkan screenshot hasil run pada folder `evidence/` dan cantumkan link repository ini pada laporan kelompok.
+Screenshot hasil run ada pada folder `evidence/` 
