@@ -18,50 +18,79 @@ import java.util.Scanner;
  */
 
 /*
- * Class PlaylistOOP merupakan class utama yang digunakan
- * untuk menjalankan program manajemen playlist.
+ * Class PlaylistOOP merupakan class utama untuk menjalankan
+ * sistem manajemen playlist musik.
  */
 public class PlaylistOOP {
 
     /*
      * Method main() merupakan titik awal program.
-     * Program membuat array Lagu untuk menyimpan objek lagu,
-     * kemudian membuat objek Admin dan Member yang menggunakan
-     * array playlist yang sama.
      */
     public static void main(String[] args) {
 
-        // Membuat Scanner untuk menerima input dari pengguna
+        /*
+         * Membuat Scanner untuk menerima input
+         * dari pengguna melalui keyboard.
+         */
         Scanner input = new Scanner(System.in);
 
-        // Membuat array Lagu dengan kapasitas maksimal 100 lagu
+        /*
+         * Membuat array Lagu dengan kapasitas 100 objek.
+         *
+         * Array ini digunakan untuk menyimpan kumpulan
+         * objek Lagu sesuai instruksi tugas.
+         */
         Lagu[] playlist = new Lagu[100];
 
-        // Membuat objek Admin dan Member
-        Admin admin = new Admin("Admin Playlist", playlist);
-        Member member = new Member("Member Playlist", playlist);
+        /*
+         * Membuat objek Admin dan Member.
+         *
+         * Keduanya menggunakan array playlist yang sama.
+         * Dengan demikian, lagu yang ditambahkan oleh Admin
+         * dapat dilihat dan digunakan oleh Member.
+         */
+        Admin admin = new Admin(
+                "Admin Playlist",
+                playlist
+        );
+
+        Member member = new Member(
+                "Member Playlist",
+                playlist
+        );
 
         /*
-         * Membuat referensi bertipe User untuk menunjukkan
+         * Membuat referensi bertipe User yang menunjuk
+         * kepada objek Admin dan Member.
+         *
+         * Bagian ini digunakan untuk menunjukkan
          * penerapan polymorphism.
          */
         User userAdmin = admin;
         User userMember = member;
 
-        // Menampilkan informasi hak akses Admin dan Member
+        /*
+         * Menampilkan judul utama program.
+         */
         System.out.println("==========================================");
         System.out.println("       SISTEM MANAJEMEN PLAYLIST");
         System.out.println("==========================================");
         System.out.println();
 
+        /*
+         * Memanggil tampilkanAkses() melalui referensi User.
+         *
+         * Java akan menjalankan method sesuai objek sebenarnya,
+         * yaitu Admin dan Member.
+         */
         userAdmin.tampilkanAkses();
         userMember.tampilkanAkses();
 
         boolean berjalan = true;
 
         /*
-         * Perulangan utama digunakan agar program terus berjalan
-         * sampai pengguna memilih menu Keluar.
+         * Perulangan utama digunakan agar program dapat
+         * terus digunakan sampai pengguna memilih menu Keluar.
          */
         while (berjalan) {
 
@@ -80,17 +109,20 @@ public class PlaylistOOP {
             switch (pilihan) {
 
                 case "1":
+
                     // Membuka menu khusus Admin
                     menuAdmin(admin, input);
                     break;
 
                 case "2":
+
                     // Membuka menu khusus Member
                     menuMember(member, input);
                     break;
 
                 case "3":
-                    // Menghentikan perulangan dan keluar dari program
+
+                    // Mengubah kondisi agar perulangan berhenti
                     berjalan = false;
 
                     System.out.println();
@@ -99,25 +131,36 @@ public class PlaylistOOP {
                     break;
 
                 default:
-                    // Menampilkan pesan jika pilihan menu tidak tersedia
+
+                    // Menampilkan pesan jika menu tidak tersedia
                     System.out.println();
                     System.out.println("Menu tidak tersedia.");
-                    System.out.println("Silakan pilih menu 1, 2, atau 3.");
+                    System.out.println(
+                            "Silakan pilih menu 1, 2, atau 3."
+                    );
             }
         }
 
-        // Menutup Scanner setelah program selesai
+        /*
+         * Menutup Scanner setelah program selesai.
+         */
         input.close();
     }
 
     /*
-     * Method menuAdmin() digunakan untuk menampilkan menu
-     * dan menjalankan fungsi-fungsi yang dapat dilakukan Admin.
+     * Method menuAdmin() digunakan untuk menjalankan
+     * fungsi-fungsi yang dapat dilakukan oleh Admin.
      */
-    public static void menuAdmin(Admin admin, Scanner input) {
+    public static void menuAdmin(
+            Admin admin,
+            Scanner input) {
 
         boolean kembali = false;
 
+        /*
+         * Perulangan digunakan agar Admin dapat melakukan
+         * beberapa aktivitas sebelum kembali ke menu utama.
+         */
         while (!kembali) {
 
             System.out.println();
@@ -153,16 +196,23 @@ public class PlaylistOOP {
                     boolean durasiValid = false;
 
                     /*
-                     * Perulangan digunakan untuk memastikan
-                     * durasi yang dimasukkan berupa angka.
+                     * Memastikan durasi yang dimasukkan berupa angka
+                     * dan memiliki nilai lebih dari nol.
                      */
                     while (!durasiValid) {
 
-                        System.out.print("Masukkan durasi (menit): ");
+                        System.out.print(
+                                "Masukkan durasi (menit): "
+                        );
 
                         try {
 
-                            durasi = Double.parseDouble(input.nextLine());
+                            /*
+                             * Mengubah input String menjadi double.
+                             */
+                            durasi = Double.parseDouble(
+                                    input.nextLine()
+                            );
 
                             if (durasi > 0) {
 
@@ -177,6 +227,10 @@ public class PlaylistOOP {
 
                         } catch (NumberFormatException e) {
 
+                            /*
+                             * Menangani kesalahan apabila input
+                             * durasi bukan berupa angka.
+                             */
                             System.out.println(
                                     "Input durasi harus berupa angka."
                             );
@@ -184,19 +238,26 @@ public class PlaylistOOP {
                     }
 
                     /*
-                     * Membuat objek Lagu berdasarkan data yang
-                     * dimasukkan oleh Admin.
+                     * Membuat objek Lagu berdasarkan data
+                     * yang dimasukkan Admin.
                      */
-                    Lagu laguBaru = new Lagu(judul, artis, durasi);
+                    Lagu laguBaru = new Lagu(
+                            judul,
+                            artis,
+                            durasi
+                    );
 
-                    // Menambahkan objek Lagu ke dalam array playlist
+                    /*
+                     * Mengirim objek Lagu ke method tambahLagu()
+                     * untuk disimpan ke dalam array playlist.
+                     */
                     admin.tambahLagu(laguBaru);
 
                     break;
 
                 case "2":
 
-                    // Admin melihat seluruh lagu dalam playlist
+                    // Admin melihat daftar lagu yang tersimpan
                     admin.lihatPlaylist();
 
                     break;
@@ -205,7 +266,6 @@ public class PlaylistOOP {
 
                     // Kembali ke menu utama
                     kembali = true;
-
                     break;
 
                 default:
@@ -218,13 +278,19 @@ public class PlaylistOOP {
     }
 
     /*
-     * Method menuMember() digunakan untuk menampilkan menu
-     * dan menjalankan fungsi-fungsi yang dapat dilakukan Member.
+     * Method menuMember() digunakan untuk menjalankan
+     * fungsi-fungsi yang dapat dilakukan oleh Member.
      */
-    public static void menuMember(Member member, Scanner input) {
+    public static void menuMember(
+            Member member,
+            Scanner input) {
 
         boolean kembali = false;
 
+        /*
+         * Perulangan digunakan agar Member dapat menggunakan
+         * beberapa fitur sebelum kembali ke menu utama.
+         */
         while (!kembali) {
 
             System.out.println();
@@ -245,7 +311,7 @@ public class PlaylistOOP {
 
                 case "1":
 
-                    // Member melihat seluruh lagu dalam playlist
+                    // Member melihat seluruh daftar lagu
                     member.lihatPlaylist();
 
                     break;
@@ -261,7 +327,7 @@ public class PlaylistOOP {
                     System.out.print("Masukkan judul lagu: ");
                     String judulCari = input.nextLine();
 
-                    // Memanggil method pencarian lagu milik Member
+                    // Mencari lagu berdasarkan judul
                     member.cariLagu(judulCari);
 
                     break;
@@ -273,11 +339,11 @@ public class PlaylistOOP {
                     System.out.println("            DETAIL LAGU");
                     System.out.println("==========================================");
 
-                    // Meminta judul lagu untuk melihat detailnya
+                    // Meminta judul lagu yang ingin dilihat detailnya
                     System.out.print("Masukkan judul lagu: ");
                     String judulDetail = input.nextLine();
 
-                    // Menampilkan informasi lengkap lagu
+                    // Menampilkan detail lagu
                     member.lihatDetailLagu(judulDetail);
 
                     break;
@@ -293,7 +359,6 @@ public class PlaylistOOP {
 
                     // Kembali ke menu utama
                     kembali = true;
-
                     break;
 
                 default:

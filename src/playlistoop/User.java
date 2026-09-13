@@ -1,35 +1,46 @@
 package playlistoop;
-
 /*
  * Class User merupakan parent class untuk Admin dan Member.
- * Class ini digunakan untuk menyimpan data umum pengguna
- * dan menjadi dasar penerapan inheritance serta polymorphism.
+ *
+ * Class ini menjadi dasar penerapan inheritance.
  */
 public class User {
 
-    protected String nama;
+    /*
+     * Atribut nama dibuat private sebagai penerapan
+     * konsep enkapsulasi.
+     */
+    private String nama;
 
-    // Constructor untuk membuat objek User
+    /*
+     * Constructor untuk membuat objek User.
+     */
     public User(String nama) {
         this.nama = nama;
     }
 
     /*
-     * Method tampilkanAkses() akan dioverride oleh class
-     * Admin dan Member dengan hak akses yang berbeda.
-     * Hal ini merupakan penerapan polymorphism.
+     * Getter digunakan untuk mengambil nilai nama.
      */
-    public void tampilkanAkses() {
-        System.out.println("Pengguna memiliki akses umum.");
-    }
-
-    // Getter untuk mengambil nama pengguna
     public String getNama() {
         return nama;
     }
 
-    // Setter untuk mengubah nama pengguna
+    /*
+     * Setter digunakan untuk mengubah nilai nama.
+     */
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    /*
+     * Method tampilkanAkses() merupakan method yang akan
+     * dioverride oleh class Admin dan Member.
+     *
+     * Perbedaan implementasi method ini pada subclass
+     * digunakan untuk menunjukkan konsep polymorphism.
+     */
+    public void tampilkanAkses() {
+        System.out.println("Pengguna memiliki akses umum.");
     }
 }

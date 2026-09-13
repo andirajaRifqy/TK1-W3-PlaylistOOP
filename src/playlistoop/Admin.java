@@ -2,28 +2,41 @@ package playlistoop;
 
 /*
  * Class Admin merupakan child class dari User.
- * Admin memiliki hak untuk menambahkan lagu dan
- * melihat daftar lagu dalam playlist.
+ *
+ * Admin bertugas untuk menambahkan lagu ke dalam sistem
+ * dan melihat daftar lagu yang tersimpan.
  */
 public class Admin extends User {
 
+    /*
+     * Array playlist digunakan untuk menyimpan kumpulan
+     * objek Lagu.
+     */
     private Lagu[] playlist;
 
-    // Constructor untuk membuat objek Admin
+    /*
+     * Constructor Admin.
+     *
+     * super(nama) digunakan untuk memanggil constructor
+     * dari parent class User.
+     */
     public Admin(String nama, Lagu[] playlist) {
         super(nama);
         this.playlist = playlist;
     }
 
     /*
-     * Method ini melakukan override terhadap method
-     * tampilkanAkses() dari class User.
-     * Implementasi ini menunjukkan polymorphism.
+     * Override method tampilkanAkses() dari class User.
+     *
+     * Method ini memiliki implementasi yang berbeda
+     * dari method pada parent class.
      */
     @Override
     public void tampilkanAkses() {
-        System.out.println("Admin " + nama
-                + " dapat menambahkan lagu dan melihat daftar playlist.");
+        System.out.println(
+                "Admin " + getNama()
+                + " dapat menambahkan lagu dan melihat daftar playlist."
+        );
     }
 
     /*
@@ -32,23 +45,35 @@ public class Admin extends User {
      */
     public void tambahLagu(Lagu lagu) {
 
+        /*
+         * Melakukan perulangan untuk mencari posisi array
+         * yang masih kosong.
+         */
         for (int i = 0; i < playlist.length; i++) {
 
-            // Mencari posisi array yang masih kosong
+            // Mengecek apakah posisi array masih kosong
             if (playlist[i] == null) {
+
+                // Menyimpan objek Lagu ke dalam array
                 playlist[i] = lagu;
 
                 System.out.println();
                 System.out.println("Lagu berhasil ditambahkan.");
                 System.out.println("Judul : " + lagu.getJudul());
 
+                // Menghentikan method setelah lagu berhasil ditambahkan
                 return;
             }
         }
 
-        // Ditampilkan jika seluruh array sudah terisi
+        /*
+         * Pesan ditampilkan apabila seluruh posisi
+         * array sudah terisi.
+         */
         System.out.println();
-        System.out.println("Playlist penuh. Lagu tidak dapat ditambahkan.");
+        System.out.println(
+                "Playlist penuh. Lagu tidak dapat ditambahkan."
+        );
     }
 
     /*
@@ -64,21 +89,29 @@ public class Admin extends User {
 
         boolean adaLagu = false;
 
+        /*
+         * Menelusuri seluruh isi array playlist.
+         */
         for (int i = 0; i < playlist.length; i++) {
 
+            // Mengecek apakah terdapat objek Lagu pada posisi tersebut
             if (playlist[i] != null) {
 
                 System.out.println();
                 System.out.println("Lagu ke-" + (i + 1));
                 System.out.println("------------------------------------------");
 
+                // Menampilkan informasi lengkap lagu
                 playlist[i].tampilkanInfo();
 
                 adaLagu = true;
             }
         }
 
-        // Jika belum ada lagu yang tersimpan
+        /*
+         * Jika tidak terdapat lagu dalam array,
+         * playlist dinyatakan masih kosong.
+         */
         if (!adaLagu) {
             System.out.println("Playlist masih kosong.");
         }
