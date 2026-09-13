@@ -35,30 +35,30 @@ src/
 ## Pengujian Laporan
 
 Pengujian laporan menggunakan satu lagu:
-- Judul: `Laskar Pelangi`
-- Artis: `Nidji`
-- Durasi: `4.10` menit
+- Judul: `33x`
+- Artis: `Perunggu`
+- Durasi: `7.14` menit
 
 Urutan pengujian manual:
 1. Login sebagai Admin.
-2. Tambah lagu `Laskar Pelangi`, `Nidji`, `4.10`.
+2. Tambah lagu `33x`, `Perunggu`, `7.14`.
 3. Lihat daftar playlist.
 4. Kembali ke menu utama.
 5. Login sebagai Member.
 6. Lihat daftar lagu.
-7. Cari `Laskar Pelangi`.
-8. Lihat detail `Laskar Pelangi`.
+7. Cari `33x`.
+8. Lihat detail `33x`.
 9. Hitung rata-rata durasi.
 10. Kembali ke menu utama dan keluar.
 
 Hasil yang diharapkan mencakup:
-- Lagu berhasil ditambahkan: `Laskar Pelangi`.
+- Lagu berhasil ditambahkan: `33x`.
 - Lagu muncul pada daftar playlist.
-- Pencarian Member menemukan `Laskar Pelangi`.
-- Detail menunjukkan `Nidji` dan durasi `4.10 menit`.
+- Pencarian Member menemukan `33x`.
+- Detail menunjukkan `Perunggu` dan durasi `7.14 menit`.
 - Jumlah lagu: `1`.
-- Total durasi: `4.10 menit`.
-- Rata-rata: `4.10 menit`.
+- Total durasi: `7.14 menit`.
+- Rata-rata: `7.14 menit`.
 
 ## Bukti Eksekusi
 
